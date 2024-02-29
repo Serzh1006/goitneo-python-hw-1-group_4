@@ -18,6 +18,8 @@ def get_birthdays_per_week(users):
     for date in users:
         birthday = date['birthday'].date()
         birthday_this_year = birthday.replace(year=today.year)
+        if birthday_this_year < today:
+            birthday_this_year = birthday.replace(year=today.year+1)
         delta_days = (birthday_this_year - today).days
         if delta_days < 7:
             if birthday_this_year.weekday()==5 or birthday_this_year.weekday()==6:
